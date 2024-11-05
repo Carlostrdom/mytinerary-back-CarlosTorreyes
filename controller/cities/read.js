@@ -1,4 +1,4 @@
-import City from "../../models/city.js";
+import City from "../../models/City.js";
 
 
 let allcities = async (req, res, next) => {
@@ -13,7 +13,7 @@ let allcities = async (req, res, next) => {
 
         const cities = await City.find(namequery);
         return res.status(200).json({
-            Response: cities
+            response: cities
         })
 
     } catch (error) {
@@ -31,7 +31,7 @@ let cityById = async (req, res, next) => {
         let cityQuery = req.params.id
         let all = await City.findById(cityQuery)
         return res.status(200).json({
-            response: all
+            Response: all
         })
 
     } catch (error) {
