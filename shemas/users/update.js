@@ -13,13 +13,13 @@ import {
 const schema = joi.object({
     _id: joi
         .objectId()
+        .required()
         .messages({
             "string.pattern.name": "_id " + ERROR_FORMAT_ID,
-            "any.required":"_id " +  ERROR_REQUIRED,
+            "any.required": "_id " + ERROR_REQUIRED,
         }),
-        firstName: joi
+    firstName: joi
         .string()
-        .required()
         .messages({
             "string.empty": "firstName " + ERROR_EMPTY,
             "any.required": "firstName " + ERROR_REQUIRED,
@@ -27,7 +27,7 @@ const schema = joi.object({
         }),
     lastName: joi
         .string()
-        .required()
+
         .messages({
             "string.empty": "lastName " + ERROR_EMPTY,
             "any.required": "lastName " + ERROR_REQUIRED,
@@ -49,7 +49,6 @@ const schema = joi.object({
         }),
     country: joi
         .string()
-        .required()
         .messages({
             "string.empty": "country " + ERROR_EMPTY,
             "any.required": "country " + ERROR_REQUIRED,

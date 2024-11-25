@@ -9,6 +9,7 @@ import {
 const schema = joi.object({
     _id: joi
         .objectId()
+        .required()
         .messages({
             "string.pattern.name": "_id " + ERROR_FORMAT_ID,
             "any.required": "_id " + ERROR_REQUIRED,

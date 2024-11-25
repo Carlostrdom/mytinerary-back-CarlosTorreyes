@@ -19,7 +19,7 @@ router.get('/all',passport.authenticate('jwt',{session:false}),allUser);
 router.get('/user/:_id',passport.authenticate('jwt',{session:false}),idAllUsers)
 router.post('/register',validorUser(user_schema),accountExists,createHash,generateToken,createUser)
 router.put("/update",passport.authenticate('jwt',{session:false}),validorUser(user_schema_update), updateUser);
-router.delete("/delete/:_id",passport.authenticate('jwt',{session:false}),validatorId(user_schema_delete),validorUser(user_schema_delete), deleteUser);
+router.delete("/delete/:_id",passport.authenticate('jwt',{session:false}),validatorId(user_schema_delete), deleteUser);
 
 
 export default router;

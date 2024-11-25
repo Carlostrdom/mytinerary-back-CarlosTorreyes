@@ -11,15 +11,15 @@ import {
 const schema = joi.object({
     _id: joi
         .objectId()
+        .required()
         .messages({
-            "string.pattern.name": "_id" + ERROR_FORMAT_ID,
-            "any.required": "_id" + ERROR_REQUIRED,
+            "string.pattern.name": "_id " + ERROR_FORMAT_ID,
+            "any.required": "_id " + ERROR_REQUIRED,
         }),
     name: joi
         .string()
         .min(3)
         .max(100)
-
         .messages({
             "string.empty": "name " + ERROR_REQUIRED,
             "any.required": "name " + ERROR_REQUIRED,
@@ -69,7 +69,6 @@ const schema = joi.object({
         .string()
         .min(3)
         .max(100)
-
         .messages({
             "string.base": "capital " + ERROR_STRING,
             "string.empty": "capital " + ERROR_REQUIRED,

@@ -9,6 +9,7 @@ import {
 const schema = joi.object({
     photoItinerary: joi
         .string()
+        .uri()
         .required()
         .messages({
             "string.empty":"photoItinerary " + ERROR_REQUIRED,
@@ -65,6 +66,7 @@ const schema = joi.object({
 
     user: joi
         .objectId()
+        .required()
         .messages({
             "string.pattern.name": "user " + ERROR_FORMAT_ID,
         }),

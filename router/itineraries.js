@@ -16,7 +16,7 @@ router.get('/id/:id', passport.authenticate('jwt',{session:false}),itineraryById
 router.get('/cities/:id', itineraryByIdcities);
 router.post('/create', userValidator(itineraries_schema),itineraryExists,createItinerary);
 router.put('/update', passport.authenticate('jwt',{session:false}),userValidator(itineraries_schema_update),itineraryExists,updatedNewItinerary);
-router.delete('/delete', passport.authenticate('jwt',{session:false}),deletedItinerary);
+router.delete('/delete/:_id', passport.authenticate('jwt',{session:false}),deletedItinerary);
 
 
 

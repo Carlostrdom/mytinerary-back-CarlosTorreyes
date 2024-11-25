@@ -28,6 +28,7 @@ const schema = joi.object({
         }),
     email: joi
         .string()
+        .required()
         .email()
         .messages({
             "string.empty": "email " + ERROR_EMPTY,
@@ -36,6 +37,8 @@ const schema = joi.object({
         }),
     photoUrl: joi
         .string()
+        .required()
+        .uri()
         .messages({
             "string.empty": "photoUrl " + ERROR_EMPTY,
             "any.required": "photoUrl " + ERROR_REQUIRED,
@@ -50,6 +53,7 @@ const schema = joi.object({
         }),
     role: joi
         .number()
+        .required()
         .messages({
             "number.base": "role " + ERROR_NUMBER,
             "any.required": "role " + ERROR_REQUIRED,
@@ -57,6 +61,7 @@ const schema = joi.object({
     password: joi
         .string()
         .alphanum()
+        .required()
         .min(8)
         .messages({
             "string.empty": "password " + ERROR_EMPTY,

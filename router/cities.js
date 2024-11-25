@@ -8,12 +8,14 @@ import userValidator from "../middlewares/userValidator.js";
 import city_schema from "../shemas/city/create.js";
 import cityExists from "../middlewares/cityExists.js";
 import city_schema_update from "../shemas/city/update.js";
+import validatorId from "../middlewares/validatorId.js";
+import city_schema_delete from "../shemas/city/delete.js";
 const router = Router();
 
 router.get('/all', allcities);
 router.get('/_id/:id', passport.authenticate('jwt',{session:false}),cityById);
 router.post('/create', userValidator(city_schema),cityExists,createCity);
 router.put('/update', passport.authenticate('jwt',{session:false}),userValidator(city_schema_update),updatedNewcities);
-router.delete('/delete', passport.authenticate('jwt',{session:false}),deletedcity);
+router.delete('/delete/:_id', passport.authenticate('jwt',{session:false}),validatorId(city_schema_delete),deletedcity);
 
 export default router

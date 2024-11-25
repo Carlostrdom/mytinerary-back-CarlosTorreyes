@@ -2,16 +2,13 @@ import Itinerary from "../../models/Itinerary.js";
 
 const deletedItinerary = async (req, res, next) => {
     try {
-        const deleteItinerary = await Itinerary.findByIdAndDelete(req.body._id);
+        let delItinerary = await Itinerary.deleteOne({_id: req.params._id});
 
-        if (deleteItinerary) {
+        
             return res.status(200).json({
-                response: deleteItinerary,
+                response: delItinerary,
             });
-        } else {
-
-            next(error);
-        }
+       
     } catch (error) {
         next(error);
     }
