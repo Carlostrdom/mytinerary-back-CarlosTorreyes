@@ -1,17 +1,14 @@
 import Itinerary from "../../models/Itinerary.js";
 import "../../models/City.js";
+import "../../models/User.js";
 
 let allitineraries = async (req, res, next) => {
     try {
-        let { city } = req.query;
-        let namequery = {};
-
-
-        if (city) {
-            namequery.name = { $regex: '^' + city, $options: "i" };
-        }
-
-        const itineraries = await Itinerary.find(namequery).populate('city', 'name image continent description capital').exec();
+        const namequery =  req.query.search ? {name: {$regex: req.query.search, $options:'i'}}:{}
+        const itineraries = await Itinerary.find(namequery)
+        .populate('user', 'firstName lastName photoUrl email online') // Población de datos de usuarios
+        .populate('city', 'name image continent description capital') // Población de datos de ciudades
+        .exec();;
         return res.status(200).json({
             response: itineraries
         });
@@ -44,7 +41,7 @@ let itineraryByIdcities = async (req, res, next) => {
         const city = req.params.id;
 
 
-        const ItineraryA = await Itinerary.find({ city: city }).populate('city', 'name image continent description capital').exec();
+        const ItineraryA = await Itinerary.find({ city: city }).populate('city', 'name image continent description capital').populate('user', 'firstName lastName email photoUrl online').exec();
 
         return res.status(200).json({
             response: ItineraryA

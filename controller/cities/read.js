@@ -3,13 +3,9 @@ import City from "../../models/City.js";
 
 let allcities = async (req, res, next) => {
     try {
-        let { name } = req.query
-        let namequery = {}
-
-        if (name) {
-            namequery.name = { $regex: name, $options: "i" }
-
-        }
+        console.log(req.query.search);
+        
+        const namequery = req.query.search ? {name: {$regex: req.query.search, $options:'i'}}:{}
 
         const cities = await City.find(namequery);
         return res.status(200).json({
@@ -31,7 +27,7 @@ let cityById = async (req, res, next) => {
         let cityQuery = req.params.id
         let all = await City.findById(cityQuery)
         return res.status(200).json({
-            Response: all
+            response: all
         })
 
     } catch (error) {
